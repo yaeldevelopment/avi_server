@@ -22,12 +22,10 @@ namespace WebApplication14
         private readonly IConfiguration _configuration;
         public MongoDBManager(IConfiguration configuration,string collectionName)
         {
-           
 
-      
-            connection_string = configuration.GetConnectionString("mongodb");
+             connection_string = Environment.GetEnvironmentVariable("MONGODB_CONNECTION_STRING");
             var client = new MongoClient(connection_string);
-            _database = client.GetDatabase(configuration["DatabaseName"]);
+            _database = client.GetDatabase(Environment.GetEnvironmentVariable("MONGODB_DATABASE_NAME"));
 
             _collection = _database.GetCollection<T>(collectionName);
         }

@@ -132,3 +132,4 @@ C:\Users\user1\Desktop\Year_b\c_and_mongo_angular\WebApplication14\WebApplicatio
 C:\Users\user1\Desktop\Year_b\c_and_mongo_angular\WebApplication14\WebApplication14\obj\Debug\net6.0\rjsmrazor.dswa.cache.json
 C:\Users\user1\Desktop\Year_b\c_and_mongo_angular\WebApplication14\WebApplication14\obj\Debug\net6.0\rjsmcshtml.dswa.cache.json
 C:\Users\user1\Desktop\Year_b\c_and_mongo_angular\WebApplication14\WebApplication14\obj\Debug\net6.0\staticwebassets.build.json.cache
+C:\Users\user1\Desktop\Year_b\c_and_mongo_angular\WebApplication14\WebApplication14\obj\Debug\net6.0\WebApplication14.sourcelink.json

@@ -20,14 +20,19 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 // Register EmailService and bind SMTP settings
-builder.Services.Configure<WebApplication14.Services.SmtpSettings>(builder.Configuration.GetSection("Smtp"));
+builder.Services.Configure<WebApplication14.Services.SmtpSettings>(
+    builder.Configuration.GetSection("Smtp"));
 builder.Services.AddSingleton<WebApplication14.Services.IEmailService, WebApplication14.Services.EmailService>();
 
 var app = builder.Build();
 
-app.UseHttpsRedirection();
+// Use HTTPS only in Development
+if (!app.Environment.IsDevelopment())
+{
+    app.UseHttpsRedirection();
+}
 
-// Swagger תמיד זמין (אם תרצה רק ב־Development אפשר להחזיר את ה־if)
+// Swagger תמיד זמין
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
@@ -37,11 +42,12 @@ app.UseSwaggerUI(c =>
 
 app.UseRouting();
 
-// Enable CORS (לאחר Routing)
+// Enable CORS
 app.UseCors("AllowSpecificOrigin");
 
 app.UseAuthorization();
 
 app.MapControllers();
 
-app.Run("http://0.0.0.0:8080");
+// ⚠️ לא צריך לציין כתובת – Render מנהל את ה-Port
+app.Run();
