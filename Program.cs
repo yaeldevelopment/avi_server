@@ -7,7 +7,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigin", policyBuilder =>
     {
-        policyBuilder.WithOrigins("http://localhost:4200") // בלי '/' בסוף
+        policyBuilder.WithOrigins("https://avinoam.netlify.app") // בלי '/' בסוף
                      .AllowAnyMethod()
                      .AllowAnyHeader();
     });
