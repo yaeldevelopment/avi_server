@@ -4,7 +4,7 @@ namespace WebApplication14.Models
 {
     public class Helper
     {
-        public static async Task SendEmailAsync(string to, string subject, string html)
+        public static async Task SendEmailAsync( string subject, string html)
         {
             var apiKey = Environment.GetEnvironmentVariable("RESEND_API_KEY");
 
@@ -14,7 +14,7 @@ namespace WebApplication14.Models
             var payload = new
             {
                 from = "onboarding@resend.dev",
-                to = new[] { Environment.GetEnvironmentVariable("TO") },
+                to = new[] { Environment.GetEnvironmentVariable("to_Email") },
                 subject = subject,
                 html = html
             };

@@ -36,7 +36,7 @@ namespace WebApplication14.Controllers
 
             try
             {
-                await Helper.SendEmailAsync(Environment.GetEnvironmentVariable("to_Email"),"פניית לקוח", body);
+                await Helper.SendEmailAsync("פניית לקוח", body);
 
                 return Ok("Email sent");
             }
