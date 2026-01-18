@@ -180,17 +180,17 @@
   {
     "ContainingType": "WebApplication14.Controllers.FunctionController",
     "Method": "SendEmail",
-    "RelativePath": "api/Function/send",
-    "HttpMethod": "GET",
+    "RelativePath": "api/Function/SendEmail",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
+    "Parameters": [
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 200
+        "Name": "customer",
+        "Type": "WebApplication14.Models.Contact",
+        "IsRequired": true
       }
-    ]
+    ],
+    "ReturnTypes": []
   }
 ]

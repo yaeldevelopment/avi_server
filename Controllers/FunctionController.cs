@@ -2,6 +2,7 @@
 using Org.BouncyCastle.Crypto.Macs;
 using System.Net;
 using System.Net.Mail;
+using WebApplication14.Models;
 
 
 
@@ -12,34 +13,38 @@ namespace WebApplication14.Controllers
     public class FunctionController : Controller
     {
         // GET: api/email/send
-        [HttpGet("send")]
-        public void SendEmail()
+
+        [HttpPost("SendEmail")]
+        public async Task<IActionResult> SendEmail([FromBody] Customer customer)
         {
+            var body = $@"
+                <html>
+                <head>
+                <meta charset='UTF-8'>
+                </head>
+                <body style='direction: rtl; text-align: right; font-family: Arial, sans-serif;'>
+                <h2>שלום רב,</h2>
+              <p>  שם: {customer.FirstName} {customer.LastName}<br/></p>
+                          <p>  טלפון: {customer.Phone} <br/></p>
+              <p>  אימייל: {customer.Email} <br/></p>
+           
+            <p>  הודעה: {customer.Message}<br/></p>
+                </body>
+                </html>";
+
+
+
             try
             {
-                var message = new MailMessage(
-                    "tripyaeleden@gmail.com",
-                    "y0556722091@gmail.com",
-                    "Subject",
-                    "Message body"
-                );
+                await Helper.SendEmailAsync(Environment.GetEnvironmentVariable("to_Email"),"פניית לקוח", body);
 
-                var client = new SmtpClient("smtp.gmail.com", 587)
-                {
-                    Credentials = new NetworkCredential(
-                        "tripyaeleden@gmail.com",
-                        "urof ehie vwrt bxmp"   // App Password, לא סיסמה רגילה
-                    ),
-                    EnableSsl = true
-                };
-
-                client.Send(message);
-                Console.WriteLine("Email sent!");
+                return Ok("Email sent");
             }
-            catch (SmtpException ex)
+            catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                return StatusCode(500, $"Email failed to send: {ex.Message}");
             }
-        } }
-
         }
+
+    }
+}
